@@ -1,2 +1,1236 @@
-# kurdischmind
-Kurdisch Lernplattform
+<!DOCTYPE html>
+
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KurdischMind - Kurmancî Lernen | Kostenloser Anfängerkurs</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+```
+    body {
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        background: #0a0a0a !important;
+        background-color: #0a0a0a !important;
+        color: #ffffff;
+        min-height: 100vh;
+    }
+
+    html {
+        background: #0a0a0a !important;
+        background-color: #0a0a0a !important;
+    }
+
+    .hero {
+        background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+        padding: 40px 20px;
+        text-align: center;
+        border-bottom: 3px solid #f5f5dc;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .hero::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><rect width="100" height="100" fill="none"/><path d="M0 0L100 100M100 0L0 100" stroke="rgba(245,245,220,0.05)" stroke-width="1"/></svg>');
+        opacity: 0.3;
+    }
+
+    .hero-content {
+        position: relative;
+        z-index: 1;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    .logo {
+        font-size: 2.5em;
+        font-weight: 900;
+        margin-bottom: 10px;
+        background: linear-gradient(135deg, #f5f5dc 0%, #ffffff 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+
+    .tagline {
+        font-size: 1.2em;
+        color: #f5f5dc;
+        margin-bottom: 20px;
+        opacity: 0.9;
+    }
+
+    .free-badge {
+        display: inline-block;
+        background: linear-gradient(135deg, #4ade80 0%, #22c55e 100%);
+        color: #000;
+        padding: 8px 20px;
+        border-radius: 20px;
+        font-weight: 700;
+        font-size: 0.9em;
+        margin-bottom: 15px;
+        box-shadow: 0 4px 15px rgba(74, 222, 128, 0.4);
+    }
+
+    .social-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: rgba(245, 245, 220, 0.1);
+        color: #f5f5dc;
+        padding: 10px 20px;
+        border-radius: 25px;
+        text-decoration: none;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        border: 2px solid #f5f5dc;
+    }
+
+    .social-link:hover {
+        background: #f5f5dc;
+        color: #000;
+        transform: translateY(-2px);
+        box-shadow: 0 5px 20px rgba(245, 245, 220, 0.3);
+    }
+
+    .container {
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 40px 20px;
+    }
+
+    .stats-bar {
+        background: #1a1a1a;
+        border-radius: 20px;
+        padding: 30px;
+        margin-bottom: 40px;
+        border: 2px solid #2d2d2d;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+    }
+
+    .stats-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 20px;
+    }
+
+    .stat-card {
+        background: linear-gradient(135deg, #2d2d2d 0%, #1a1a1a 100%);
+        padding: 20px;
+        border-radius: 15px;
+        text-align: center;
+        border: 2px solid #f5f5dc;
+    }
+
+    .stat-number {
+        font-size: 2.5em;
+        font-weight: 900;
+        color: #f5f5dc;
+        margin-bottom: 5px;
+    }
+
+    .stat-label {
+        color: rgba(245, 245, 220, 0.7);
+        font-size: 0.9em;
+    }
+
+    .progress-section {
+        background: linear-gradient(135deg, #f5f5dc 0%, #ffffff 100%);
+        color: #000;
+        padding: 30px;
+        border-radius: 20px;
+        margin-bottom: 40px;
+        box-shadow: 0 10px 40px rgba(245, 245, 220, 0.2);
+    }
+
+    .progress-section h3 {
+        font-size: 1.5em;
+        margin-bottom: 20px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .level-badge {
+        background: #000;
+        color: #f5f5dc;
+        padding: 5px 15px;
+        border-radius: 20px;
+        font-size: 0.7em;
+        font-weight: 700;
+    }
+
+    .progress-bar {
+        background: rgba(0,0,0,0.1);
+        height: 30px;
+        border-radius: 15px;
+        overflow: hidden;
+        margin-bottom: 15px;
+        position: relative;
+    }
+
+    .progress-bar-fill {
+        background: linear-gradient(90deg, #000 0%, #2d2d2d 100%);
+        height: 100%;
+        width: 0%;
+        transition: width 0.8s cubic-bezier(0.4, 0.0, 0.2, 1);
+        border-radius: 15px;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .progress-bar-fill::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+        animation: shimmer 2s infinite;
+    }
+
+    @keyframes shimmer {
+        0% { transform: translateX(-100%); }
+        100% { transform: translateX(100%); }
+    }
+
+    .progress-info {
+        display: flex;
+        justify-content: space-between;
+        font-weight: 600;
+        margin-bottom: 10px;
+    }
+
+    .streak-counter {
+        background: #000;
+        color: #f5f5dc;
+        padding: 15px;
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-weight: 700;
+    }
+
+    .section {
+        margin-bottom: 60px;
+    }
+
+    .section-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 30px;
+        padding-bottom: 15px;
+        border-bottom: 3px solid #f5f5dc;
+    }
+
+    .section-title {
+        font-size: 2em;
+        font-weight: 900;
+        color: #f5f5dc;
+        display: flex;
+        align-items: center;
+        gap: 15px;
+    }
+
+    .reset-btn {
+        background: rgba(245, 245, 220, 0.1);
+        border: 2px solid #f5f5dc;
+        color: #f5f5dc;
+        padding: 10px 20px;
+        border-radius: 10px;
+        cursor: pointer;
+        font-weight: 600;
+        transition: all 0.3s ease;
+    }
+
+    .reset-btn:hover {
+        background: #f5f5dc;
+        color: #000;
+        transform: translateY(-2px);
+    }
+
+    .alphabet-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+        gap: 15px;
+    }
+
+    .letter-box {
+        background: #1a1a1a;
+        padding: 20px;
+        border-radius: 15px;
+        text-align: center;
+        border: 2px solid #2d2d2d;
+        cursor: pointer;
+        transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        position: relative;
+        overflow: hidden;
+    }
+
+    .letter-box::before {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 0;
+        height: 0;
+        background: radial-gradient(circle, #f5f5dc 0%, transparent 70%);
+        border-radius: 50%;
+        transform: translate(-50%, -50%);
+        opacity: 0;
+        transition: all 0.6s ease;
+    }
+
+    .letter-box:hover {
+        transform: translateY(-5px) scale(1.05);
+        border-color: #f5f5dc;
+        box-shadow: 0 10px 30px rgba(245, 245, 220, 0.3);
+    }
+
+    .letter-box:active::before {
+        width: 200px;
+        height: 200px;
+        opacity: 0.3;
+    }
+
+    .letter-main {
+        font-size: 2em;
+        font-weight: 900;
+        color: #f5f5dc;
+        margin-bottom: 5px;
+    }
+
+    .letter-sound {
+        font-size: 0.8em;
+        color: rgba(245, 245, 220, 0.6);
+    }
+
+    .word-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 20px;
+    }
+
+    .word-card {
+        background: #1a1a1a;
+        padding: 25px;
+        border-radius: 15px;
+        border: 2px solid #2d2d2d;
+        cursor: pointer;
+        transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        position: relative;
+        overflow: hidden;
+    }
+
+    .word-card::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(245, 245, 220, 0.1), transparent);
+        transition: left 0.5s ease;
+    }
+
+    .word-card:hover::after {
+        left: 100%;
+    }
+
+    .word-card:hover {
+        transform: translateY(-8px);
+        border-color: #f5f5dc;
+        box-shadow: 0 15px 40px rgba(245, 245, 220, 0.2);
+    }
+
+    .category {
+        display: inline-block;
+        background: #f5f5dc;
+        color: #000;
+        padding: 5px 15px;
+        border-radius: 20px;
+        font-size: 0.75em;
+        font-weight: 700;
+        margin-bottom: 15px;
+        text-transform: uppercase;
+    }
+
+    .kurdish-main {
+        font-size: 1.6em;
+        font-weight: 900;
+        color: #f5f5dc;
+        margin-bottom: 10px;
+    }
+
+    .german-trans {
+        font-size: 1.1em;
+        color: rgba(255, 255, 255, 0.8);
+        margin-bottom: 8px;
+    }
+
+    .pronunciation {
+        font-size: 0.9em;
+        color: rgba(245, 245, 220, 0.6);
+        font-style: italic;
+    }
+
+    .phrase-section {
+        display: grid;
+        gap: 20px;
+    }
+
+    .phrase-item {
+        background: #1a1a1a;
+        padding: 25px;
+        border-radius: 15px;
+        border-left: 5px solid #f5f5dc;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+    .phrase-item:hover {
+        transform: translateX(10px);
+        box-shadow: 0 10px 30px rgba(245, 245, 220, 0.2);
+    }
+
+    .phrase-ku {
+        font-weight: 700;
+        color: #f5f5dc;
+        margin-bottom: 10px;
+        font-size: 1.2em;
+    }
+
+    .phrase-de {
+        color: rgba(255, 255, 255, 0.8);
+    }
+
+    .learned {
+        background: linear-gradient(135deg, #1a1a1a 0%, #0f3d0f 100%) !important;
+        border-color: #4ade80 !important;
+    }
+
+    .learned::before {
+        content: '✓';
+        position: absolute;
+        top: 8px;
+        right: 8px;
+        background: #4ade80;
+        color: #000;
+        width: 28px;
+        height: 28px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 900;
+        font-size: 1em;
+        box-shadow: 0 4px 15px rgba(74, 222, 128, 0.5);
+        animation: checkmarkBounce 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    }
+
+    @keyframes checkmarkBounce {
+        0%, 100% { transform: scale(1); }
+        50% { transform: scale(1.3); }
+    }
+
+    .celebration {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) scale(0);
+        background: linear-gradient(135deg, #f5f5dc 0%, #ffffff 100%);
+        color: #000;
+        padding: 40px 60px;
+        border-radius: 25px;
+        font-size: 2em;
+        font-weight: 900;
+        box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+        z-index: 10000;
+        opacity: 0;
+        transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        text-align: center;
+        border: 5px solid #000;
+    }
+
+    .celebration.show {
+        transform: translate(-50%, -50%) scale(1) rotate(5deg);
+        opacity: 1;
+    }
+
+    .confetti {
+        position: fixed;
+        width: 10px;
+        height: 10px;
+        background: #f5f5dc;
+        z-index: 9999;
+        animation: confettiFall 3s ease-out forwards;
+    }
+
+    @keyframes confettiFall {
+        to {
+            transform: translateY(100vh) rotate(360deg);
+            opacity: 0;
+        }
+    }
+
+    .achievement-popup {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background: linear-gradient(135deg, #4ade80 0%, #22c55e 100%);
+        color: #000;
+        padding: 20px 30px;
+        border-radius: 15px;
+        font-weight: 700;
+        box-shadow: 0 10px 30px rgba(74, 222, 128, 0.4);
+        transform: translateX(400px);
+        transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        z-index: 10000;
+        border: 3px solid #000;
+    }
+
+    .achievement-popup.show {
+        transform: translateX(0);
+    }
+
+    .cta-section {
+        background: linear-gradient(135deg, #f5f5dc 0%, #ffffff 100%);
+        color: #000;
+        padding: 50px 30px;
+        border-radius: 25px;
+        text-align: center;
+        margin: 60px 0;
+        border: 5px solid #000;
+        box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+    }
+
+    .cta-section h2 {
+        font-size: 2.5em;
+        margin-bottom: 20px;
+        font-weight: 900;
+    }
+
+    .cta-section p {
+        font-size: 1.2em;
+        margin-bottom: 30px;
+        opacity: 0.8;
+    }
+
+    .price {
+        font-size: 3em;
+        font-weight: 900;
+        margin: 20px 0;
+        color: #000;
+    }
+
+    .price span {
+        font-size: 0.5em;
+        opacity: 0.6;
+    }
+
+    .cta-button {
+        display: inline-block;
+        background: #000;
+        color: #f5f5dc;
+        padding: 20px 50px;
+        border-radius: 15px;
+        font-size: 1.2em;
+        font-weight: 700;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        border: 3px solid #000;
+        cursor: pointer;
+    }
+
+    .cta-button:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+        background: #1a1a1a;
+    }
+
+    footer {
+        background: #000;
+        color: #f5f5dc;
+        text-align: center;
+        padding: 30px;
+        border-top: 3px solid #f5f5dc;
+    }
+
+    footer a {
+        color: #f5f5dc;
+        text-decoration: none;
+        font-weight: 600;
+    }
+
+    footer a:hover {
+        text-decoration: underline;
+    }
+
+    @media (max-width: 768px) {
+        .logo { font-size: 1.8em; }
+        .section-title { font-size: 1.5em; }
+        .alphabet-grid { grid-template-columns: repeat(auto-fill, minmax(60px, 1fr)); }
+        .word-grid { grid-template-columns: 1fr; }
+        .stats-grid { grid-template-columns: 1fr; }
+        .celebration { font-size: 1.3em; padding: 25px 35px; }
+        .cta-section h2 { font-size: 1.8em; }
+        .price { font-size: 2em; }
+    }
+</style>
+```
+
+</head>
+<body>
+    <!-- Hero Section -->
+    <div class="hero">
+        <div class="hero-content">
+            <div class="logo">KurdischMind</div>
+            <div class="tagline">Fêrbûna Kurmancî | Lerne Kurdisch spielerisch</div>
+            <div class="free-badge">✨ DIESER KURS IST 100% KOSTENLOS ✨</div>
+            <br><br>
+            <a href="https://instagram.com/KurdischMind" target="_blank" class="social-link">
+                <span>📱</span> Folge uns auf Instagram @KurdischMind
+            </a>
+        </div>
+    </div>
+
+```
+<div class="container">
+    <!-- Statistiken -->
+    <div class="stats-bar">
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-number" id="totalLearned">0</div>
+                <div class="stat-label">Gelernte Elemente</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" id="totalClicks">0</div>
+                <div class="stat-label">Gesamt Klicks</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" id="currentStreak">0</div>
+                <div class="stat-label">Aktuelle Serie</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" id="percentComplete">0%</div>
+                <div class="stat-label">Kurs Fortschritt</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Fortschritt -->
+    <div class="progress-section">
+        <h3>
+            🎯 Dein Lernfortschritt
+            <span class="level-badge" id="levelBadge">Level 1</span>
+        </h3>
+        <div class="progress-info">
+            <span id="progressText">0 von 0 Elementen gelernt</span>
+            <span id="xpText">0 XP</span>
+        </div>
+        <div class="progress-bar">
+            <div class="progress-bar-fill" id="progressBar"></div>
+        </div>
+        <div class="streak-counter">
+            🔥 Streak: <span id="streakDisplay">0</span> in Folge!
+        </div>
+    </div>
+
+    <!-- Alphabet -->
+    <div class="section">
+        <div class="section-header">
+            <div class="section-title">
+                🔤 Das kurdische Alphabet
+            </div>
+            <button class="reset-btn" onclick="resetSection('letters')">↺ Zurücksetzen</button>
+        </div>
+        <div class="alphabet-grid" id="alphabetGrid">
+            <!-- Wird mit JavaScript gefüllt -->
+        </div>
+    </div>
+
+    <!-- Begrüßungen -->
+    <div class="section">
+        <div class="section-header">
+            <div class="section-title">
+                👋 Begrüßungen - Silav
+            </div>
+            <button class="reset-btn" onclick="resetSection('greetings')">↺ Zurücksetzen</button>
+        </div>
+        <div class="word-grid" id="greetingsGrid">
+            <!-- Wird mit JavaScript gefüllt -->
+        </div>
+    </div>
+
+    <!-- Wichtige Wörter -->
+    <div class="section">
+        <div class="section-header">
+            <div class="section-title">
+                ⭐ Wichtige Wörter - Peyvên Girîng
+            </div>
+            <button class="reset-btn" onclick="resetSection('words')">↺ Zurücksetzen</button>
+        </div>
+        <div class="word-grid" id="wordsGrid">
+            <!-- Wird mit JavaScript gefüllt -->
+        </div>
+    </div>
+
+    <!-- Zahlen -->
+    <div class="section">
+        <div class="section-header">
+            <div class="section-title">
+                🔢 Zahlen - Hejmar
+            </div>
+            <button class="reset-btn" onclick="resetSection('numbers')">↺ Zurücksetzen</button>
+        </div>
+        <div class="word-grid" id="numbersGrid">
+            <!-- Wird mit JavaScript gefüllt -->
+        </div>
+    </div>
+
+    <!-- Sätze -->
+    <div class="section">
+        <div class="section-header">
+            <div class="section-title">
+                💬 Nützliche Sätze - Hevokên Bikêr
+            </div>
+            <button class="reset-btn" onclick="resetSection('phrases')">↺ Zurücksetzen</button>
+        </div>
+        <div class="phrase-section" id="phrasesGrid">
+            <!-- Wird mit JavaScript gefüllt -->
+        </div>
+    </div>
+
+    <!-- CTA Section -->
+    <div class="cta-section">
+        <h2>🚀 Bereit für mehr?</h2>
+        <p>Dieser Anfängerkurs ist komplett kostenlos!<br>Lerne die Grundlagen von Kurmancî spielerisch und interaktiv.</p>
+        <div class="price">9,99€ <span>für Fortgeschrittene</span></div>
+        <p>Weitere Kurse mit noch mehr Inhalten, Videos und Übungen</p>
+        <a href="https://instagram.com/KurdischMind" target="_blank" class="cta-button">
+            Jetzt mehr erfahren →
+        </a>
+    </div>
+</div>
+
+<footer>
+    <p><strong>KurdischMind</strong> - Deine Plattform für Kurdisch lernen</p>
+    <p style="margin-top: 10px;">Folge uns: <a href="https://instagram.com/KurdischMind" target="_blank">@KurdischMind auf Instagram</a></p>
+    <p style="margin-top: 15px; opacity: 0.7;">© 2026 KurdischMind. Alle Rechte vorbehalten.</p>
+</footer>
+
+<script>
+    // Daten
+    const alphabet = [
+        {letter: 'A a', sound: 'a'}, {letter: 'B b', sound: 'b'}, {letter: 'C c', sound: 'dsch'},
+        {letter: 'Ç ç', sound: 'tsch'}, {letter: 'D d', sound: 'd'}, {letter: 'E e', sound: 'e'},
+        {letter: 'Ê ê', sound: 'ä/ee'}, {letter: 'F f', sound: 'f'}, {letter: 'G g', sound: 'g'},
+        {letter: 'H h', sound: 'h'}, {letter: 'I i', sound: 'i'}, {letter: 'Î î', sound: 'ii'},
+        {letter: 'J j', sound: 'sch'}, {letter: 'K k', sound: 'k'}, {letter: 'L l', sound: 'l'},
+        {letter: 'M m', sound: 'm'}, {letter: 'N n', sound: 'n'}, {letter: 'O o', sound: 'o'},
+        {letter: 'P p', sound: 'p'}, {letter: 'Q q', sound: 'q'}, {letter: 'R r', sound: 'r'},
+        {letter: 'S s', sound: 's'}, {letter: 'Ş ş', sound: 'sch'}, {letter: 'T t', sound: 't'},
+        {letter: 'U u', sound: 'u'}, {letter: 'Û û', sound: 'uu'}, {letter: 'V v', sound: 'w'},
+        {letter: 'W w', sound: 'w'}, {letter: 'X x', sound: 'ch'}, {letter: 'Y y', sound: 'j'},
+        {letter: 'Z z', sound: 's'}
+    ];
+
+    const greetings = [
+        {ku: 'Silav', de: 'Hallo', pr: 'si-law', cat: 'Begrüßung'},
+        {ku: 'Merheba', de: 'Willkommen', pr: 'mer-he-ba', cat: 'Begrüßung'},
+        {ku: 'Beyanî baş', de: 'Guten Morgen', pr: 'be-ja-nii basch', cat: 'Begrüßung'},
+        {ku: 'Roj baş', de: 'Guten Tag', pr: 'rosch basch', cat: 'Begrüßung'},
+        {ku: 'Êvar baş', de: 'Guten Abend', pr: 'ee-war basch', cat: 'Begrüßung'},
+        {ku: 'Şev baş', de: 'Gute Nacht', pr: 'schew basch', cat: 'Begrüßung'},
+        {ku: 'Bi xatirê te', de: 'Auf Wiedersehen', pr: 'bi cha-ti-ree te', cat: 'Abschied'},
+        {ku: 'Xwahafiz', de: 'Auf Wiedersehen', pr: 'chwa-ha-fis', cat: 'Abschied'},
+        {ku: 'Bi xêr be', de: 'Tschüss', pr: 'bi cheer be', cat: 'Abschied'}
+    ];
+
+    const words = [
+        {ku: 'Spas', de: 'Danke', pr: 'spas', cat: 'Höflichkeit'},
+        {ku: 'Ji kerema xwe', de: 'Bitte', pr: 'schi ke-re-ma chwe', cat: 'Höflichkeit'},
+        {ku: 'Bi xêr hatî', de: 'Willkommen', pr: 'bi cheer ha-tii', cat: 'Höflichkeit'},
+        {ku: 'Erê / Belê', de: 'Ja', pr: 'e-ree / be-lee', cat: 'Antwort'},
+        {ku: 'Na / Nexêr', de: 'Nein', pr: 'na / ne-cheer', cat: 'Antwort'},
+        {ku: 'Bibore', de: 'Entschuldigung', pr: 'bi-bo-re', cat: 'Höflichkeit'},
+        {ku: 'Alîkarî', de: 'Hilfe', pr: 'a-lii-ka-rii', cat: 'Hilfe'},
+        {ku: 'Dê / Dayik', de: 'Mutter', pr: 'dee / da-jik', cat: 'Familie'},
+        {ku: 'Bav', de: 'Vater', pr: 'baw', cat: 'Familie'},
+        {ku: 'Bira', de: 'Bruder', pr: 'bi-ra', cat: 'Familie'},
+        {ku: 'Xweh', de: 'Schwester', pr: 'chweh', cat: 'Familie'},
+        {ku: 'Nan', de: 'Brot', pr: 'nan', cat: 'Essen'},
+        {ku: 'Av', de: 'Wasser', pr: 'aw', cat: 'Essen'},
+        {ku: 'Çay', de: 'Tee', pr: 'tschaj', cat: 'Essen'},
+        {ku: 'Mal', de: 'Haus', pr: 'mal', cat: 'Orte'}
+    ];
+
+    const numbers = [
+        {ku: 'Yek', de: 'Eins (1)', pr: 'jek', cat: 'Zahlen'},
+        {ku: 'Du', de: 'Zwei (2)', pr: 'du', cat: 'Zahlen'},
+        {ku: 'Sê', de: 'Drei (3)', pr: 'see', cat: 'Zahlen'},
+        {ku: 'Çar', de: 'Vier (4)', pr: 'tschar', cat: 'Zahlen'},
+        {ku: 'Pênc', de: 'Fünf (5)', pr: 'peentsch', cat: 'Zahlen'},
+        {ku: 'Şeş', de: 'Sechs (6)', pr: 'schesch', cat: 'Zahlen'},
+        {ku: 'Heft', de: 'Sieben (7)', pr: 'heft', cat: 'Zahlen'},
+        {ku: 'Heşt', de: 'Acht (8)', pr: 'hescht', cat: 'Zahlen'},
+        {ku: 'Neh', de: 'Neun (9)', pr: 'neh', cat: 'Zahlen'},
+        {ku: 'Deh', de: 'Zehn (10)', pr: 'deh', cat: 'Zahlen'},
+        {ku: 'Bîst', de: 'Zwanzig (20)', pr: 'biist', cat: 'Zahlen'},
+        {ku: 'Sed', de: 'Hundert (100)', pr: 'sed', cat: 'Zahlen'}
+    ];
+
+    const phrases = [
+        {ku: 'Navê te çi ye?', de: 'Wie heißt du?', pr: 'na-wee te tschi je', cat: 'Konversation'},
+        {ku: 'Navê min ... e', de: 'Ich heiße...', pr: 'na-wee min ... e', cat: 'Konversation'},
+        {ku: 'Tu çawa yî?', de: 'Wie geht es dir?', pr: 'tu tscha-wa jii', cat: 'Konversation'},
+        {ku: 'Ez baş im', de: 'Mir geht es gut', pr: 'es basch im', cat: 'Konversation'},
+        {ku: 'Ez fam nakim', de: 'Ich verstehe nicht', pr: 'es fam na-kim', cat: 'Konversation'},
+        {ku: 'Tu almanî dipeyivî?', de: 'Sprichst du Deutsch?', pr: 'tu al-ma-nii di-pe-ji-wii', cat: 'Konversation'},
+        {ku: 'Ez hêvî dikim em dîsa hev bibînin', de: 'Ich hoffe, wir sehen uns wieder', pr: 'es hee-wii di-kim', cat: 'Konversation'}
+    ];
+
+    // State Management mit Kategorie-Scores - wird dynamisch berechnet
+    let state = {
+        learned: new Set(),
+        clicks: 0,
+        streak: 0,
+        xp: 0,
+        level: 1,
+        categoryScores: {}
+    };
+
+    // Funktion zum Initialisieren der Kategorie-Scores
+    function initializeCategoryScores() {
+        // Zähle alle Kategorien
+        const categoryCounts = {
+            'Alphabet': alphabet.length,
+            'Begrüßung': 0,
+            'Abschied': 0,
+            'Höflichkeit': 0,
+            'Antwort': 0,
+            'Familie': 0,
+            'Essen': 0,
+            'Orte': 0,
+            'Hilfe': 0,
+            'Zahlen': 0,
+            'Konversation': 0
+        };
+
+        // Zähle Greetings
+        greetings.forEach(item => {
+            if (categoryCounts[item.cat] !== undefined) {
+                categoryCounts[item.cat]++;
+            }
+        });
+
+        // Zähle Words
+        words.forEach(item => {
+            if (categoryCounts[item.cat] !== undefined) {
+                categoryCounts[item.cat]++;
+            }
+        });
+
+        // Zähle Numbers
+        numbers.forEach(item => {
+            if (categoryCounts[item.cat] !== undefined) {
+                categoryCounts[item.cat]++;
+            }
+        });
+
+        // Zähle Phrases
+        phrases.forEach(item => {
+            if (categoryCounts[item.cat] !== undefined) {
+                categoryCounts[item.cat]++;
+            }
+        });
+
+        // Initialisiere state.categoryScores
+        Object.keys(categoryCounts).forEach(cat => {
+            if (categoryCounts[cat] > 0) {
+                state.categoryScores[cat] = {
+                    learned: 0,
+                    total: categoryCounts[cat]
+                };
+            }
+        });
+
+        console.log('Initialisierte Kategorien:', state.categoryScores);
+    }
+
+    // Audio Context mit verschiedenen Sounds
+    const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+    
+    // Sound-Variationen
+    const soundTypes = [
+        { freq: 523.25, wave: 'sine' },      // C
+        { freq: 587.33, wave: 'sine' },      // D
+        { freq: 659.25, wave: 'sine' },      // E
+        { freq: 698.46, wave: 'sine' },      // F
+        { freq: 783.99, wave: 'sine' },      // G
+        { freq: 880.00, wave: 'sine' },      // A
+        { freq: 987.77, wave: 'sine' },      // B
+        { freq: 1046.50, wave: 'triangle' }, // C hoch
+    ];
+
+    let soundIndex = 0;
+
+    function playSound(frequency, duration = 0.15, waveType = 'sine') {
+        const oscillator = audioContext.createOscillator();
+        const gainNode = audioContext.createGain();
+        oscillator.connect(gainNode);
+        gainNode.connect(audioContext.destination);
+        oscillator.frequency.value = frequency;
+        oscillator.type = waveType;
+        gainNode.gain.setValueAtTime(0.3, audioContext.currentTime);
+        gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + duration);
+        oscillator.start(audioContext.currentTime);
+        oscillator.stop(audioContext.currentTime + duration);
+    }
+
+    function playVariedSound() {
+        // Wechsle zwischen verschiedenen Sounds
+        const sound = soundTypes[soundIndex % soundTypes.length];
+        playSound(sound.freq, 0.15, sound.wave);
+        soundIndex++;
+    }
+
+    function playSuccessSound() {
+        [523.25, 659.25, 783.99].forEach((freq, i) => {
+            setTimeout(() => playSound(freq, 0.2), i * 80);
+        });
+    }
+
+    function playLevelUpSound() {
+        [392, 523.25, 659.25, 783.99, 1046.50].forEach((freq, i) => {
+            setTimeout(() => playSound(freq, 0.15), i * 60);
+        });
+    }
+
+    function playUnlearnSound() {
+        playSound(300, 0.1, 'triangle');
+    }
+
+    // Konfetti
+    function createConfetti() {
+        for (let i = 0; i < 50; i++) {
+            setTimeout(() => {
+                const confetti = document.createElement('div');
+                confetti.className = 'confetti';
+                confetti.style.left = Math.random() * window.innerWidth + 'px';
+                confetti.style.background = ['#f5f5dc', '#4ade80', '#000'][Math.floor(Math.random() * 3)];
+                confetti.style.animationDelay = Math.random() * 0.5 + 's';
+                document.body.appendChild(confetti);
+                setTimeout(() => confetti.remove(), 3000);
+            }, i * 30);
+        }
+    }
+
+    // Partikel ohne GSAP
+    function createParticles(element) {
+        const rect = element.getBoundingClientRect();
+        for (let i = 0; i < 12; i++) {
+            const particle = document.createElement('div');
+            particle.style.position = 'fixed';
+            particle.style.left = rect.left + rect.width / 2 + 'px';
+            particle.style.top = rect.top + rect.height / 2 + 'px';
+            particle.style.width = '6px';
+            particle.style.height = '6px';
+            particle.style.borderRadius = '50%';
+            particle.style.background = ['#f5f5dc', '#4ade80', '#fff'][Math.floor(Math.random() * 3)];
+            particle.style.pointerEvents = 'none';
+            particle.style.zIndex = '9999';
+            particle.style.transition = 'all 0.8s ease-out';
+            document.body.appendChild(particle);
+            
+            const angle = (Math.PI * 2 * i) / 12;
+            const distance = 60 + Math.random() * 40;
+            
+            setTimeout(() => {
+                particle.style.left = rect.left + rect.width / 2 + Math.cos(angle) * distance + 'px';
+                particle.style.top = rect.top + rect.height / 2 + Math.sin(angle) * distance + 'px';
+                particle.style.opacity = '0';
+                particle.style.transform = 'scale(0)';
+            }, 10);
+            
+            setTimeout(() => particle.remove(), 800);
+        }
+    }
+
+    // Achievement Notification
+    function showAchievement(text) {
+        const popup = document.createElement('div');
+        popup.className = 'achievement-popup';
+        popup.innerHTML = `🏆 ${text}`;
+        document.body.appendChild(popup);
+        setTimeout(() => popup.classList.add('show'), 100);
+        setTimeout(() => {
+            popup.classList.remove('show');
+            setTimeout(() => popup.remove(), 500);
+        }, 3000);
+    }
+
+    // Celebration
+    function showCelebration(text) {
+        const celebration = document.createElement('div');
+        celebration.className = 'celebration';
+        celebration.innerHTML = text;
+        document.body.appendChild(celebration);
+        createConfetti();
+        playSuccessSound();
+        setTimeout(() => celebration.classList.add('show'), 10);
+        setTimeout(() => {
+            celebration.classList.remove('show');
+            setTimeout(() => celebration.remove(), 500);
+        }, 3000);
+    }
+
+    // Kategorie-Scorer erstellen
+    function createCategoryScorers() {
+        const scorersContainer = document.createElement('div');
+        scorersContainer.id = 'categoryScorers';
+        scorersContainer.style.cssText = `
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-bottom: 40px;
+        `;
+
+        Object.keys(state.categoryScores).forEach(category => {
+            const scorer = document.createElement('div');
+            scorer.className = 'category-scorer';
+            scorer.id = `scorer-${category}`;
+            scorer.style.cssText = `
+                background: #1a1a1a;
+                padding: 20px;
+                border-radius: 15px;
+                border: 2px solid #2d2d2d;
+                text-align: center;
+                transition: all 0.3s ease;
+            `;
+            scorer.innerHTML = `
+                <div style="font-size: 0.9em; color: #f5f5dc; margin-bottom: 10px; font-weight: 700; text-transform: uppercase;">${category}</div>
+                <div style="font-size: 2em; font-weight: 900; color: #4ade80;" id="score-${category}">0</div>
+                <div style="font-size: 0.8em; color: rgba(245, 245, 220, 0.6);">von ${state.categoryScores[category].total}</div>
+                <div style="background: rgba(245, 245, 220, 0.1); height: 8px; border-radius: 5px; margin-top: 10px; overflow: hidden;">
+                    <div id="bar-${category}" style="background: linear-gradient(90deg, #4ade80, #22c55e); height: 100%; width: 0%; transition: width 0.5s ease; border-radius: 5px;"></div>
+                </div>
+            `;
+            scorersContainer.appendChild(scorer);
+        });
+
+        const container = document.querySelector('.container');
+        const statsBar = document.querySelector('.stats-bar');
+        container.insertBefore(scorersContainer, statsBar.nextSibling);
+    }
+
+    // Update Category Score
+    function updateCategoryScore(category, isLearned) {
+        if (!state.categoryScores[category]) return;
+        
+        state.categoryScores[category].learned += isLearned ? 1 : -1;
+        state.categoryScores[category].learned = Math.max(0, state.categoryScores[category].learned);
+        
+        const learned = state.categoryScores[category].learned;
+        const total = state.categoryScores[category].total;
+        const percentage = (learned / total) * 100;
+        
+        const scoreEl = document.getElementById(`score-${category}`);
+        const barEl = document.getElementById(`bar-${category}`);
+        const scorerEl = document.getElementById(`scorer-${category}`);
+        
+        if (scoreEl) scoreEl.textContent = learned;
+        if (barEl) barEl.style.width = percentage + '%';
+        
+        // Highlight bei 100%
+        if (scorerEl) {
+            if (percentage === 100) {
+                scorerEl.style.borderColor = '#4ade80';
+                scorerEl.style.boxShadow = '0 0 20px rgba(74, 222, 128, 0.4)';
+                showAchievement(`${category} komplett gemeistert! 🎉`);
+            } else {
+                scorerEl.style.borderColor = '#2d2d2d';
+                scorerEl.style.boxShadow = 'none';
+            }
+        }
+    }
+
+    // Update Stats
+    function updateStats() {
+        const totalItems = alphabet.length + greetings.length + words.length + numbers.length + phrases.length;
+        const percentage = Math.round((state.learned.size / totalItems) * 100);
+        
+        document.getElementById('totalLearned').textContent = state.learned.size;
+        document.getElementById('totalClicks').textContent = state.clicks;
+        document.getElementById('currentStreak').textContent = state.streak;
+        document.getElementById('percentComplete').textContent = percentage + '%';
+        document.getElementById('progressText').textContent = `${state.learned.size} von ${totalItems} Elementen gelernt`;
+        document.getElementById('xpText').textContent = `${state.xp} XP`;
+        document.getElementById('streakDisplay').textContent = state.streak;
+        document.getElementById('progressBar').style.width = percentage + '%';
+        
+        // Level berechnen
+        const newLevel = Math.floor(state.xp / 100) + 1;
+        if (newLevel > state.level) {
+            state.level = newLevel;
+            showCelebration(`🎉 LEVEL ${state.level} ERREICHT! 🎉`);
+            playLevelUpSound();
+        }
+        document.getElementById('levelBadge').textContent = `Level ${state.level}`;
+
+        // Achievements
+        if (state.learned.size === 10) showAchievement('Erste 10 Elemente gemeistert!');
+        if (state.learned.size === 25) showAchievement('25 Elemente! Du bist auf dem richtigen Weg!');
+        if (state.learned.size === 50) showAchievement('50 Elemente! Unglaublich!');
+        if (state.streak === 10) showAchievement('10er Streak! Du bist im Flow!');
+        if (state.streak === 20) showAchievement('20er Streak! Unstoppable!');
+        if (percentage === 100) {
+            showCelebration('🎊 KURS ABGESCHLOSSEN! 🎊<br>Du bist ein Held!');
+            createConfetti();
+        }
+    }
+
+    // Handle Click
+    function handleClick(id, element, type, category = null) {
+        state.clicks++;
+        
+        if (element.classList.contains('learned')) {
+            // Unlearn
+            element.classList.remove('learned');
+            state.learned.delete(id);
+            state.xp = Math.max(0, state.xp - 5);
+            state.streak = 0;
+            playUnlearnSound();
+            
+            if (category) {
+                updateCategoryScore(category, false);
+            } else if (type === 'letter') {
+                updateCategoryScore('Alphabet', false);
+            }
+        } else {
+            // Learn
+            element.classList.add('learned');
+            state.learned.add(id);
+            state.xp += 10;
+            state.streak++;
+            playVariedSound();
+            createParticles(element);
+            
+            if (category) {
+                updateCategoryScore(category, true);
+            } else if (type === 'letter') {
+                updateCategoryScore('Alphabet', true);
+            }
+            
+            if (state.streak % 5 === 0) {
+                showCelebration(`🔥 ${state.streak}ER STREAK! 🔥`);
+            }
+        }
+        
+        updateStats();
+    }
+
+    // Reset Section
+    function resetSection(section) {
+        const items = document.querySelectorAll(`[data-section="${section}"]`);
+        items.forEach(item => {
+            if (item.classList.contains('learned')) {
+                const category = item.dataset.category;
+                item.classList.remove('learned');
+                state.learned.delete(item.dataset.id);
+                
+                if (category) {
+                    updateCategoryScore(category, false);
+                } else if (section === 'letters') {
+                    updateCategoryScore('Alphabet', false);
+                }
+            }
+        });
+        state.streak = 0;
+        updateStats();
+        showAchievement(`${section} zurückgesetzt!`);
+    }
+
+    // Render Functions
+    function renderAlphabet() {
+        const grid = document.getElementById('alphabetGrid');
+        alphabet.forEach((item, i) => {
+            const div = document.createElement('div');
+            div.className = 'letter-box';
+            div.dataset.section = 'letters';
+            div.dataset.id = `letter-${i}`;
+            div.innerHTML = `
+                <div class="letter-main">${item.letter}</div>
+                <div class="letter-sound">${item.sound}</div>
+            `;
+            div.onclick = () => handleClick(div.dataset.id, div, 'letter');
+            grid.appendChild(div);
+        });
+    }
+
+    function renderWords(data, gridId, section) {
+        const grid = document.getElementById(gridId);
+        data.forEach((item, i) => {
+            const div = document.createElement('div');
+            div.className = 'word-card';
+            div.dataset.section = section;
+            div.dataset.id = `${section}-${i}`;
+            div.dataset.category = item.cat || '';
+            div.innerHTML = `
+                ${item.cat ? `<div class="category">${item.cat}</div>` : ''}
+                <div class="kurdish-main">${item.ku}</div>
+                <div class="german-trans">${item.de}</div>
+                <div class="pronunciation">Aussprache: ${item.pr}</div>
+            `;
+            div.onclick = () => handleClick(div.dataset.id, div, 'word', item.cat);
+            grid.appendChild(div);
+        });
+    }
+
+    function renderPhrases() {
+        const grid = document.getElementById('phrasesGrid');
+        phrases.forEach((item, i) => {
+            const div = document.createElement('div');
+            div.className = 'phrase-item';
+            div.dataset.section = 'phrases';
+            div.dataset.id = `phrase-${i}`;
+            div.dataset.category = item.cat || '';
+            div.innerHTML = `
+                <div class="phrase-ku">${item.ku}</div>
+                <div class="phrase-de">${item.de}</div>
+                <div class="pronunciation" style="margin-top:8px">Aussprache: ${item.pr}</div>
+            `;
+            div.onclick = () => handleClick(div.dataset.id, div, 'phrase', item.cat);
+            grid.appendChild(div);
+        });
+    }
+
+    // Initialize
+    document.addEventListener('DOMContentLoaded', () => {
+        initializeCategoryScores();
+        renderAlphabet();
+        renderWords(greetings, 'greetingsGrid', 'greetings');
+        renderWords(words, 'wordsGrid', 'words');
+        renderWords(numbers, 'numbersGrid', 'numbers');
+        renderPhrases();
+        createCategoryScorers();
+        updateStats();
+    });
+</script>
+```
+
+</body>
+</html>
