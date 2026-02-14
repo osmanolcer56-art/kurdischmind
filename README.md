@@ -1,0 +1,2 @@
+# kurdischmind
+Kurdisch Lernplattform
